@@ -19,10 +19,17 @@ livestreamersrv URLs are in the format `http://127.0.0.1:88/URL` where `URL` is 
 
 ### Installation
 #### Install Python if necessary
+Windows: https://www.python.org/downloads/ (ensure Python is added to PATH)
+
+Cygwin: Install the packages *python* and *python-setuptools*
+
+Mac: `brew install python` (or equivalent)
+
+Linux: Install the package *python*
 #### Install the Livestreamer API
-`easy_install -U livestreamer`
-or
-`pip install -U livestreamer`
+`pip install -U livestreamer` (newer versions of Python)
+
+`easy_install -U livestreamer` (older versions)
 #### Install livestreamersrv
 https://github.com/athoik/livestreamersrv
 #### Install vlc-playlist-livestreamer
