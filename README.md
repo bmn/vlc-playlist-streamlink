@@ -18,4 +18,9 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 livestreamersrv URLs are in the format `http://127.0.0.1:88/URL` where `URL` is the actual stream URL. When you add the stream URL, such as `twitch.tv/galedog`, to VLC, vlc-playlist-livestreamer intercepts the request and silently changes the URL to `http://127.0.0.1:88/twitch.tv/galedog`. VLC will then dutifully play the stream provided by livestreamersrv.
 
 ### Installation
+* Windows: <VLC Program Files directory>\lua\extensions\
+* Mac: /Applications/VLC.app/Contents/MacOS/share/lua/extensions/
+* Linux: ~/.local/share/vlc/lua/extensions/
+
+
 Yet to come :o
