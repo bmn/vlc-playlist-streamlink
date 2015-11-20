@@ -36,12 +36,13 @@ Linux: Install the package *python*
 #### Install livestreamersrv
 https://github.com/athoik/livestreamersrv
 
-#### Install livestreamersrv as a service if desired
-Cygwin: `cygrunsrv -I 'Livestreamer Service' -p /<path to>/livestreamersrv -a manualstart`
+Cygwin: `cygrunsrv -I 'Livestreamer Service' -p /*livestreamersrv_directory*/livestreamersrv -a manualstart`
+
+Linux: Move livestreamersrv to your services directory, and run any necessary command to enable the service (e.g. `update-rc.d livestreamersrv defaults` in *init.d*-based systems).
 
 #### Install vlc-playlist-livestreamer
 Copy vlc/livestreamer.lua to VLC's lua/playlist directory:
-* Windows: <VLC Program Files directory>\lua\playlist\
+* Windows: *VLC_Program_Files_directory*\lua\playlist\
 * Mac: /Applications/VLC.app/Contents/MacOS/share/lua/playlist/
 * Linux: ~/.local/share/vlc/lua/playlist/
 
