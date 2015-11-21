@@ -18,7 +18,10 @@ vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://g
 * The API sends the video stream to livestreamersrv
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
-### Installation
+### Automated Installation
+**Cygwin**: Run `install-cygwin.sh` from the terminal. Some steps will ask for Windows administrator privileges.
+
+### Manual Installation
 #### Install Python 2.x/3.x if necessary
 **Windows**: https://www.python.org/downloads/ (ensure Python is added to PATH)
 
