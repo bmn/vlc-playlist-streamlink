@@ -19,7 +19,13 @@ vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://g
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
 ### Automated Installation
+**Windows**: Cygwin is recommended for Windows installations. Manual installation steps for Windows without Cygwin are below.
+
 **Cygwin**: Run `install-cygwin.sh` from the terminal. Some steps will ask for Windows administrator privileges.
+
+**Mac**: Automated installer not yet available.
+
+**Linux**: Automated installer not yet available.
 
 ### Manual Installation
 #### Install Python 2.x/3.x if necessary
