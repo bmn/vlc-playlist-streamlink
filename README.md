@@ -34,11 +34,13 @@ Linux: Install the package *python*
 `easy_install -U livestreamer` (older versions)
 
 #### Install livestreamersrv
-https://github.com/athoik/livestreamersrv
+Windows: Move livestreamersrv/livestreamersrv.bat into your Startup directory. This is accessible by pressing Win+R, and entering `shell:startup`.
 
-Cygwin: `cygrunsrv -I 'Livestreamer Service' -p /*livestreamersrv_directory*/livestreamersrv -a manualstart`
+I don't know of a simple way to install a Windows Python script as a service without compiling it to an executable :(
 
-Linux: Move livestreamersrv to your services directory, and run any necessary command to enable the service (e.g. `update-rc.d livestreamersrv defaults` in *init.d*-based systems).
+Cygwin: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv -a manualstart`
+
+Linux: Move livestreamersrv/livestreamersrv to your services directory, and run any necessary command to enable the service (e.g. `update-rc.d livestreamersrv defaults` in *init.d*-based systems).
 
 #### Install vlc-playlist-livestreamer
 Copy vlc/livestreamer.lua to VLC's lua/playlist directory:
