@@ -19,7 +19,7 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
 ### Installation
-#### Install Python if necessary
+#### Install Python 2.x/3.x if necessary
 **Windows**: https://www.python.org/downloads/ (ensure Python is added to PATH)
 
 **Cygwin**: Install the packages *python* and *python-setuptools*
