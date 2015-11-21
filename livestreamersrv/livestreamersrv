@@ -1,21 +1,23 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python
 
-""" Livestreamer Deamon """
+""" Livestreamer Daemon """
 
+from __future__ import print_function
+import six
 import os
 import sys
 import time
 import atexit
 
 from signal import SIGTERM
- 
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
-from SocketServer import ThreadingMixIn
+
+from six.moves.BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+from six.moves.socketserver import ThreadingMixIn
 from livestreamer import Livestreamer
-from urllib import unquote
+from six.moves.urllib.parse import unquote
 
 HOST_NAME = ""
-PORT_NUMBER = 88
+PORT_NUMBER = 10088
 LIVESTREAMER = None
 
 
@@ -23,8 +25,8 @@ def Stream(wfile, url, quality):
     try:
         Streamer(wfile, url, quality)
     except Exception as e:
-        print "Got Exception: ", str(e)
-        wfile.write(open("/usr/share/offline.mp4", "r").read())
+        print( "Got Exception: ", str(e))
+        wfile.write(open("/home/mobaxterm/offline.mp4", "r").read())
     wfile.close()
 
 
@@ -34,9 +36,9 @@ def Streamer(wfile, url, quality):
     streams = channel.get_streams()
     if not streams:
         raise Exception("No Stream Found!")
-    print "Streams:", streams.keys()
+    print("Streams:", streams.keys())
     stream = streams[quality]
-    print str(stream)
+    print(str(stream))
     fd = stream.open()
     while True:
         buff = fd.read(4096)
@@ -82,14 +84,16 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 def start():
     global LIVESTREAMER
     LIVESTREAMER = Livestreamer()
+    LIVESTREAMER.set_option("file-caching", "5000")
+    LIVESTREAMER.set_option("network-caching", "5000")
     httpd = ThreadedHTTPServer((HOST_NAME, PORT_NUMBER), StreamHandler)
-    print time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER)
+    print(time.asctime(), "Server Starts - %s:%s" % (HOST_NAME, PORT_NUMBER))
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
     httpd.server_close()
-    print time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER)
+    print(time.asctime(), "Server Stops - %s:%s" % (HOST_NAME, PORT_NUMBER))
 
 
 class Daemon:
@@ -115,7 +119,7 @@ class Daemon:
 			if pid > 0:
 				# exit first parent
 				sys.exit(0) 
-		except OSError, e: 
+		except OSError as e: 
 			sys.stderr.write("fork #1 failed: %d (%s)\n" % (e.errno, e.strerror))
 			sys.exit(1)
 	
@@ -130,7 +134,7 @@ class Daemon:
 			if pid > 0:
 				# exit from second parent
 				sys.exit(0) 
-		except OSError, e: 
+		except OSError as e: 
 			sys.stderr.write("fork #2 failed: %d (%s)\n" % (e.errno, e.strerror))
 			sys.exit(1) 
 	
@@ -195,13 +199,13 @@ class Daemon:
 			while 1:
 				os.kill(pid, SIGTERM)
 				time.sleep(0.1)
-		except OSError, err:
+		except OSError as err:
 			err = str(err)
 			if err.find("No such process") > 0:
 				if os.path.exists(self.pidfile):
 					os.remove(self.pidfile)
 			else:
-				print str(err)
+				print(str(err))
 				sys.exit(1)
 
 	def restart(self):
@@ -235,10 +239,9 @@ if __name__ == "__main__":
         elif "manualstart" == sys.argv[1]:
             start()
         else:
-            print "Unknown command"
+            print("usage: %s start|stop|restart|manualstart" % sys.argv[0])
             sys.exit(2)
         sys.exit(0)
     else:
-        print "usage: %s start|stop|restart|manualstart" % sys.argv[0]
-        sys.exit(2)
+        start()
 
