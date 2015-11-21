@@ -28,12 +28,12 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 
 **Linux**: Install the package *python*
 
-#### Install the Livestreamer API
-`pip install -U livestreamer` (newer versions of Python)
+#### Install the Livestreamer API & dependencies
+`pip install -U livestreamer six` (newer versions of Python)
 
-`easy_install -U livestreamer` (older versions)
+`easy_install -U livestreamer six` (older versions)
 
-#### Install livestreamersrv
+#### Have livestreamersrv run in the background
 **Windows**: `schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
 
 or https://support.microsoft.com/en-gb/kb/137890
