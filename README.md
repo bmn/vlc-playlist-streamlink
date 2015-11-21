@@ -9,10 +9,10 @@ The downside of Livestreamer is that you have to do some CLI gymnastics every ti
 VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
 
 ### How it works
-vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:88/URL` where `URL` is the actual stream URL.
+vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
 
 * User adds (for example) `http://twitch.tv/carcinogensda` to VLC's playlist and presses Play
-* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:88/twitch.tv/carcinogensda`
+* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
 * VLC requests an HTTP stream from livestreamersrv
 * livestreamersrv passes the request on to the Livestreamer API
 * The API sends the video stream to livestreamersrv
