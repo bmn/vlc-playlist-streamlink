@@ -1,7 +1,10 @@
 --[[
 	Livestreamer playlist plugin by bmn.
 	Requires a running livestreamersrv instance on port 10088.
-		<https://github.com/athoik/livestreamersrv> by athoik
+		Available at <https://github.com/bmn/vlc-playlist-livestreamer>
+		Original <https://github.com/athoik/livestreamersrv> by athoik
+	
+	Distributed under the MIT Licence - see LICENCE for details
 --]]
 
 function probe()

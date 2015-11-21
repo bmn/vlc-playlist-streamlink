@@ -1,6 +1,20 @@
 #!/usr/bin/python
 
-""" Livestreamer Daemon """
+"""
+
+  livestreamersrv - a daemon for Livestreamer
+  <https://github.com/bmn/vlc-playlist-livestreamer>
+  
+  Original version <https://github.com/athoik/livestreamersrv> by athoik
+  Windows/Python 3.x support and other minor changes by bmn
+  
+  Required Python modules:
+    * livestreamer
+    * six
+
+  Distributed under the MIT Licence - see LICENCE for details
+	
+"""
 
 from __future__ import print_function
 import six
@@ -26,7 +40,7 @@ def Stream(wfile, url, quality):
         Streamer(wfile, url, quality)
     except Exception as e:
         print( "Got Exception: ", str(e))
-        wfile.write(open("/home/mobaxterm/offline.mp4", "r").read())
+        wfile.write(open("offline.mp4", "r").read())
     wfile.close()
 
 
