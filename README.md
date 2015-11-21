@@ -40,7 +40,7 @@ vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://g
 
 or https://support.microsoft.com/en-gb/kb/137890
 
-**Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv -a manualstart`
+**Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv`
 
 **Linux**: Move livestreamersrv/livestreamersrv to your services directory, and run any necessary command to enable the service (e.g. `update-rc.d livestreamersrv defaults` in *init.d*-based systems). Then start the service (`/etc/init.d/livestreamersrv start`) or restart the system.
 
