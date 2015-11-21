@@ -34,7 +34,9 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 `easy_install -U livestreamer six` (older versions)
 
 #### Have livestreamersrv run in the background
-**Windows**: `schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
+**Windows**: Windows background server support is very experimental right now...
+
+`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
 
 or https://support.microsoft.com/en-gb/kb/137890
 
