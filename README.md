@@ -1,7 +1,7 @@
 # vlc-playlist-livestreamer
 VLC playlist extension to enable direct integration with Livestreamer
 
-### Intro
+### Overview
 [Livestreamer](http://docs.livestreamer.io/) is a command-line application that bypasses the "Flash-only!"-type restrictions that streaming sites such as Twitch and YouTube Live place on their streams. It acts as a middleman between the site, and the player application you *actually* want to use (VLC by default).
 
 The downside of Livestreamer is that you have to do some CLI gymnastics every time you want to watch a stream, e.g. `livestreamer twitch.tv/peaches best`, and various GUIs have been developed to make this more user-friendly. [VLClive](https://github.com/sleighsoft/VLClive) is one example that adds a dialogue window to VLC.
