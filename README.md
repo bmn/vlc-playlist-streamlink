@@ -1,7 +1,7 @@
 # vlc-playlist-livestreamer
 VLC playlist extension to enable direct integration with Livestreamer
 
-### Intro
+### Overview
 [Livestreamer](http://docs.livestreamer.io/) is a command-line application that bypasses the "Flash-only!"-type restrictions that streaming sites such as Twitch and YouTube Live place on their streams. It acts as a middleman between the site, and the player application you *actually* want to use (VLC by default).
 
 The downside of Livestreamer is that you have to do some CLI gymnastics every time you want to watch a stream, e.g. `livestreamer twitch.tv/peaches best`, and various GUIs have been developed to make this more user-friendly. [VLClive](https://github.com/sleighsoft/VLClive) is one example that adds a dialogue window to VLC.
@@ -19,14 +19,14 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
 ### Installation
-#### Install Python if necessary
+#### Install Python 2.x/3.x if necessary
 **Windows**: https://www.python.org/downloads/ (ensure Python is added to PATH)
 
-**Cygwin**: Install the packages *python* and *python-setuptools*
+**Cygwin**: Install the packages `python` and `python-setuptools`
 
 **Mac**: `brew install python` (or equivalent)
 
-**Linux**: Install the package *python*
+**Linux**: Install the package `python`
 
 #### Install the Livestreamer API & dependencies
 `pip install -U livestreamer six` (newer versions of Python)
@@ -34,7 +34,9 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 `easy_install -U livestreamer six` (older versions)
 
 #### Have livestreamersrv run in the background
-**Windows**: `schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
+**Windows**: Windows background server support is very experimental right now...
+
+`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
 
 or https://support.microsoft.com/en-gb/kb/137890
 
@@ -48,4 +50,4 @@ Copy vlc/livestreamer.lua to VLC's lua/playlist directory:
 * **Mac**: /Applications/VLC.app/Contents/MacOS/share/lua/playlist/
 * **Linux**: ~/.local/share/vlc/lua/playlist/
 
-...
+Restart VLC if it was open already.
