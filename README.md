@@ -6,13 +6,13 @@ VLC playlist extension to enable direct integration with Livestreamer
 
 The downside of Livestreamer is that you have to do some CLI gymnastics every time you want to watch a stream, e.g. `livestreamer twitch.tv/peaches best`, and various GUIs have been developed to make this more user-friendly. [VLClive](https://github.com/sleighsoft/VLClive) is one example that adds a dialogue window to VLC.
 
-VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
+VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** (VPL) is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
 
 ### How it works
-vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
+VPL uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
 
 * User adds (for example) `http://twitch.tv/carcinogensda` to VLC's playlist and presses Play
-* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
+* VPL silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
 * VLC requests an HTTP stream from livestreamersrv
 * livestreamersrv passes the request on to the Livestreamer API
 * The API sends the video stream to livestreamersrv
@@ -21,7 +21,7 @@ vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://g
 ### Automated Installation
 **Windows**: [Cygwin](https://www.cygwin.com/) is recommended for Windows installations. Manual installation steps for Windows without Cygwin are below.
 
-**Cygwin**: Run `install-cygwin.sh` from the terminal. Some steps will ask for Windows administrator privileges.
+**Cygwin**: Run `install-cygwin.sh` from the terminal. Ensure beforehand that the files are in a location you're happy to leave them. Some steps will ask for Windows administrator privileges.
 
 **Mac**: Automated installer not yet available.
 
