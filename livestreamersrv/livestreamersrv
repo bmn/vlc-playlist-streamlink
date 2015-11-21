@@ -141,9 +141,9 @@ class Daemon:
 		# redirect standard file descriptors
 		sys.stdout.flush()
 		sys.stderr.flush()
-		si = file(self.stdin, "r")
-		so = file(self.stdout, "a+")
-		se = file(self.stderr, "a+", 0)
+		si = open(self.stdin, "r")
+		so = open(self.stdout, "a+")
+		se = open(self.stderr, "a+", 0)
 		os.dup2(si.fileno(), sys.stdin.fileno())
 		os.dup2(so.fileno(), sys.stdout.fileno())
 		os.dup2(se.fileno(), sys.stderr.fileno())
@@ -162,7 +162,7 @@ class Daemon:
 		"""
 		# Check for a pidfile to see if the daemon already runs
 		try:
-			pf = file(self.pidfile,"r")
+			pf = open(self.pidfile,"r")
 			pid = int(pf.read().strip())
 			pf.close()
 		except IOError:
@@ -228,16 +228,15 @@ class LivestreamerDaemon(Daemon):
 
 
 if __name__ == "__main__":
-    daemon = LivestreamerDaemon("/var/run/livestream.pid")
-    if len(sys.argv) == 2:
+	# Windows isn't capable of forking, so don't even try
+    if (os.name != 'nt') and (len(sys.argv) == 2):
+        daemon = LivestreamerDaemon("/var/run/livestream.pid")
         if "start" == sys.argv[1]:
             daemon.start()
         elif "stop" == sys.argv[1]:
             daemon.stop()
         elif "restart" == sys.argv[1]:
             daemon.restart()
-        elif "manualstart" == sys.argv[1]:
-            start()
         else:
             print("usage: %s start|stop|restart|manualstart" % sys.argv[0])
             sys.exit(2)
