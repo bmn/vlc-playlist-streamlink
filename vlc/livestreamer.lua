@@ -1,6 +1,6 @@
 --[[
 	Livestreamer playlist plugin by bmn.
-	Requires a running livestreamersrv instance on port 88 (default).
+	Requires a running livestreamersrv instance on port 10088.
 		<https://github.com/athoik/livestreamersrv> by athoik
 --]]
 
@@ -14,5 +14,5 @@ function probe()
 end
 
 function parse()
-	return {{ path = 'http://127.0.0.1:88/' .. vlc.path, title = vlc.access .. '://' .. vlc.path }}
+	return {{ path = 'http://127.0.0.1:10088/' .. vlc.path, title = vlc.access .. '://' .. vlc.path }}
 end
