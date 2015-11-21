@@ -22,11 +22,11 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 #### Install Python 2.x/3.x if necessary
 **Windows**: https://www.python.org/downloads/ (ensure Python is added to PATH)
 
-**Cygwin**: Install the packages *python* and *python-setuptools*
+**Cygwin**: Install the packages `python` and `python-setuptools`
 
 **Mac**: `brew install python` (or equivalent)
 
-**Linux**: Install the package *python*
+**Linux**: Install the package `python`
 
 #### Install the Livestreamer API & dependencies
 `pip install -U livestreamer six` (newer versions of Python)
@@ -50,4 +50,4 @@ Copy vlc/livestreamer.lua to VLC's lua/playlist directory:
 * **Mac**: /Applications/VLC.app/Contents/MacOS/share/lua/playlist/
 * **Linux**: ~/.local/share/vlc/lua/playlist/
 
-...
+Restart VLC if it was open already.
