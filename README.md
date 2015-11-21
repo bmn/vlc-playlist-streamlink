@@ -9,16 +9,25 @@ The downside of Livestreamer is that you have to do some CLI gymnastics every ti
 VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
 
 ### How it works
-vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:88/URL` where `URL` is the actual stream URL.
+vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
 
 * User adds (for example) `http://twitch.tv/carcinogensda` to VLC's playlist and presses Play
-* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:88/twitch.tv/carcinogensda`
+* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
 * VLC requests an HTTP stream from livestreamersrv
 * livestreamersrv passes the request on to the Livestreamer API
 * The API sends the video stream to livestreamersrv
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
-### Installation
+### Automated Installation
+**Windows**: [Cygwin](https://www.cygwin.com/) is recommended for Windows installations. Manual installation steps for Windows without Cygwin are below.
+
+**Cygwin**: Run `install-cygwin.sh` from the terminal. Some steps will ask for Windows administrator privileges.
+
+**Mac**: Automated installer not yet available.
+
+**Linux**: Automated installer not yet available.
+
+### Manual Installation
 #### Install Python 2.x/3.x if necessary
 **Windows**: https://www.python.org/downloads/ (ensure Python is added to PATH)
 
@@ -40,7 +49,7 @@ vlc-playlist-livestreamer depends on [livestreamersrv](https://github.com/athoik
 
 or https://support.microsoft.com/en-gb/kb/137890
 
-**Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv -a manualstart`
+**Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv`
 
 **Linux**: Move livestreamersrv/livestreamersrv to your services directory, and run any necessary command to enable the service (e.g. `update-rc.d livestreamersrv defaults` in *init.d*-based systems). Then start the service (`/etc/init.d/livestreamersrv start`) or restart the system.
 
@@ -49,5 +58,3 @@ Copy vlc/livestreamer.lua to VLC's lua/playlist directory:
 * **Windows**: *VLC_Program_Files_directory*\lua\playlist\
 * **Mac**: /Applications/VLC.app/Contents/MacOS/share/lua/playlist/
 * **Linux**: ~/.local/share/vlc/lua/playlist/
-
-Restart VLC if it was open already.
