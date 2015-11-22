@@ -47,7 +47,7 @@ VPL uses a modified version of [livestreamersrv](https://github.com/athoik/lives
 #### Have livestreamersrv run in the background
 **Windows**: Windows background server support is very experimental right now...
 
-`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
+`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system. You can optionally exclude the `/RP *Windows_password*` section, but this will cause the server to run in a window rather than in the background.
 
 or https://support.microsoft.com/en-gb/kb/137890
 
