@@ -49,7 +49,7 @@ VPL uses a modified version of [livestreamersrv](https://github.com/athoik/lives
 
 `schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system. You can optionally exclude the `/RP *Windows_password*` section, but this will cause the server to run in a window rather than in the background.
 
-or run `livestreamersrv/livestreamersrv` manually on each reboot.
+or run `livestreamersrv/livestreamersrv.bat` manually on each reboot.
 
 **Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv`
 
