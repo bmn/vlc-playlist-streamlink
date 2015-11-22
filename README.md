@@ -19,9 +19,9 @@ VPL uses a modified version of [livestreamersrv](https://github.com/athoik/lives
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
 ### Automated Installation
-**Windows**: Run `install-windows.bat`
+**Windows**: Right click `install-windows.bat` and run as administrator. We are currently unable to install livestreamersrv in native Windows, so the installer will offer instructions to add a scheduled task to run it.
 
-Windows is currently unable to install livestreamersrv as a service, so we add a scheduled task instead. [Cygwin](https://www.cygwin.com/) (see instructions below) is recommended for Windows installations if you are happy to run it.
+[Cygwin](https://www.cygwin.com/) (see instructions below) is recommended for Windows installations if you are happy to run it.
 
 **Cygwin**: Run `install-cygwin.sh` from the terminal. Ensure beforehand that the files are in a location you're happy to leave them. Some steps will ask for elevated privileges if you are not running Cygwin as administrator.
 
