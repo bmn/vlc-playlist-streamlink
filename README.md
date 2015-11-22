@@ -45,11 +45,11 @@ VPL uses a modified version of [livestreamersrv](https://github.com/athoik/lives
 `easy_install -U livestreamer six` (older versions)
 
 #### Have livestreamersrv run in the background
-**Windows**: Windows background server support is very experimental right now...
+**Windows**: We can't currently install livestreamersrv as a service. Alternatives:
 
 `schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system. You can optionally exclude the `/RP *Windows_password*` section, but this will cause the server to run in a window rather than in the background.
 
-or https://support.microsoft.com/en-gb/kb/137890
+or run `livestreamersrv/livestreamersrv` manually on each reboot.
 
 **Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv`
 
