@@ -6,22 +6,24 @@ VLC playlist extension to enable direct integration with Livestreamer
 
 The downside of Livestreamer is that you have to do some CLI gymnastics every time you want to watch a stream, e.g. `livestreamer twitch.tv/peaches best`, and various GUIs have been developed to make this more user-friendly. [VLClive](https://github.com/sleighsoft/VLClive) is one example that adds a dialogue window to VLC.
 
-VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
+VLC already has native support for video sites such as YouTube. Copy a [video URL](https://www.youtube.com/watch?v=oHg5SJYRHA0) or drag a link into VLC's playlist, and it'll happily stream that video. **vlc-playlist-livestreamer** (VPL) is a Lua extension for VLC that attempts to provide this same behaviour for sites covered by Livestreamer.
 
 ### How it works
-vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
+VPL uses a modified version of [livestreamersrv](https://github.com/athoik/livestreamersrv), a small HTTP server that runs in the background and acts as a go-between for Livestreamer (via its Python API) and the player. livestreamersrv URLs are in the format `http://127.0.0.1:10088/URL` where `URL` is the actual stream URL.
 
 * User adds (for example) `http://twitch.tv/carcinogensda` to VLC's playlist and presses Play
-* vlc-playlist-livestreamer silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
+* VPL silently changes the URL to `http://127.0.0.1:10088/twitch.tv/carcinogensda`
 * VLC requests an HTTP stream from livestreamersrv
 * livestreamersrv passes the request on to the Livestreamer API
 * The API sends the video stream to livestreamersrv
 * livestreamersrv passes the video on to VLC and it starts playing :)
 
 ### Automated Installation
-**Windows**: [Cygwin](https://www.cygwin.com/) is recommended for Windows installations. Manual installation steps for Windows without Cygwin are below.
+**Windows**: Right click `install-windows.bat` and run as administrator. We are currently unable to install livestreamersrv in native Windows, so the installer will offer instructions to add a scheduled task to run it.
 
-**Cygwin**: Run `install-cygwin.sh` from the terminal. Some steps will ask for Windows administrator privileges.
+[Cygwin](https://www.cygwin.com/) (see instructions below) is recommended for Windows installations if you are happy to run it.
+
+**Cygwin**: Run `install-cygwin.sh` from the terminal. Ensure beforehand that the files are in a location you're happy to leave them. Some steps will ask for elevated privileges if you are not running Cygwin as administrator.
 
 **Mac**: Automated installer not yet available.
 
@@ -43,11 +45,11 @@ vlc-playlist-livestreamer uses a modified version of [livestreamersrv](https://g
 `easy_install -U livestreamer six` (older versions)
 
 #### Have livestreamersrv run in the background
-**Windows**: Windows background server support is very experimental right now...
+**Windows**: We can't currently install livestreamersrv as a service. Alternatives:
 
-`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system.
+`schtasks /Create /RU *Windows_username* /RP *Windows_password* /SC ONSTART /TN "Livestreamer Service" /TR "*this_directory*\livestreamersrv\livestreamersrv.bat"` and restart the system. You can optionally exclude the `/RP *Windows_password*` section, but this will cause the server to run in a window rather than in the background.
 
-or https://support.microsoft.com/en-gb/kb/137890
+or run `livestreamersrv/livestreamersrv.bat` manually on each reboot.
 
 **Cygwin**: `cygrunsrv -I 'Livestreamer Service' -p /*this_directory*/livestreamersrv/livestreamersrv`
 
