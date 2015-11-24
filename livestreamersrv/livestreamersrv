@@ -2,7 +2,9 @@
 
 """
 
-  livestreamersrv - a daemon for Livestreamer
+  livestreamersrv vpl.0.1.0a - a daemon for Livestreamer
+  
+  vlc-playlist-livestreamer version
   <https://github.com/bmn/vlc-playlist-livestreamer>
   
   Original version <https://github.com/athoik/livestreamersrv> by athoik
@@ -40,7 +42,7 @@ def Stream(wfile, url, quality):
         Streamer(wfile, url, quality)
     except Exception as e:
         print( "Got Exception: ", str(e))
-        wfile.write(open("offline.mp4", "r").read())
+        wfile.write(open("%s/offline.mp4" % sys.path[0], "r").read())
     wfile.close()
 
 
